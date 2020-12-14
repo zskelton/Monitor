@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MonitorServer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Monitor Server")]
+[assembly: AssemblyDescription("Server to send information to device about computer statistics.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP Inc.")]
-[assembly: AssemblyProduct("MonitorServer")]
-[assembly: AssemblyCopyright("Copyright © HP Inc. 2020")]
+[assembly: AssemblyCompany("Skelton Networks")]
+[assembly: AssemblyProduct("Monitor")]
+[assembly: AssemblyCopyright("Copyright © Skelton Networks. 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

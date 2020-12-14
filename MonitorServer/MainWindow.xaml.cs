@@ -20,9 +20,23 @@ namespace MonitorServer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool _started = false;
+
         public MainWindow()
-        {
+        { 
             InitializeComponent();
+        }
+
+        private void btn_monitor_click(object sender, RoutedEventArgs e)
+        {
+            _started = !_started;
+            if(!_started)
+            {
+                btn_monitor.Content = "Start";
+            } else
+            {
+                btn_monitor.Content = "End";
+            }
         }
     }
 }

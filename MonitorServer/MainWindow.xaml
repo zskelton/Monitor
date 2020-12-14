@@ -7,10 +7,21 @@
         mc:Ignorable="d"
         Title="Monitor - Server" Height="250" Width="300">
     <Grid>
-        <Button x:Name="btn_monitor" Content="Start" HorizontalAlignment="Left" Margin="175,125,0,0" VerticalAlignment="Top" Width="75" Click="btn_monitor_click"/>
-        <ProgressBar x:Name="bar_cpu" HorizontalAlignment="Left" Height="15" Margin="70,70,0,0" VerticalAlignment="Top" Width="180"/>
-        <Label x:Name="lbl_cpu" Content="0%" HorizontalAlignment="Left" Margin="70,85,0,0" VerticalAlignment="Top" Width="180"/>
-        <Label Content="CPU" HorizontalAlignment="Left" Height="25" Margin="70,40,0,0" VerticalAlignment="Top" Width="180"/>
+        <Button x:Name="btn_monitor" Content="Start" HorizontalAlignment="Left" Margin="207,189.04,0,0" VerticalAlignment="Top" Width="75" Click="btn_monitor_click" IsEnabled="False"/>
+        <ProgressBar x:Name="bar_net" HorizontalAlignment="Left" Height="15" Margin="147,123.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_netStatus" Content="Connected to:" HorizontalAlignment="Left" Margin="147,138.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_net" Content="Network" HorizontalAlignment="Left" Height="25" Margin="147,93.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <ProgressBar x:Name="bar_temp" HorizontalAlignment="Left" Height="15" Margin="5,123.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_tmpStatus" Content="0 °F" HorizontalAlignment="Left" Margin="5,138.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_tmp" Content="Temperature" HorizontalAlignment="Left" Height="25" Margin="5,93.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <ProgressBar x:Name="bar_cpu" HorizontalAlignment="Left" Height="15" Margin="5,40,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_cpuStatus" Content="0%" HorizontalAlignment="Left" Margin="5,55,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_cpu" Content="CPU" HorizontalAlignment="Left" Height="25" Margin="5,10,0,0" VerticalAlignment="Top" Width="135"/>
+        <ProgressBar x:Name="bar_mem" HorizontalAlignment="Left" Height="15" Margin="147,40,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_memStatus" Content="0/0 MBs" HorizontalAlignment="Left" Margin="147,55,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_mem" Content="Memory" HorizontalAlignment="Left" Height="25" Margin="147,10,0,0" VerticalAlignment="Top" Width="135"/>
+        <ProgressBar HorizontalAlignment="Left" Height="19.96" Margin="5,189.04,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.048"/>
+        <Label x:Name="lbl_tmp_Copy" Content="No USB Connection." HorizontalAlignment="Left" Height="19.96" Margin="30,189.04,0,0" VerticalAlignment="Top" Width="172" FontSize="8"/>
 
     </Grid>
 </Window>

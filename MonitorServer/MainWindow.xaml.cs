@@ -47,7 +47,7 @@ namespace MonitorServer
             lbl_memStatus.Content = String.Format("{0:0.00}%", memVal);
             bar_mem.Value = memVal;
 
-            // Get CPU Temperature
+            // Get CPU Temperature - Maybe Not
 
             // Get Network at Hand - Update only on Changes
             if(System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())

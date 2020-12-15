@@ -18,10 +18,10 @@ namespace MonitorServer
         PerformanceCounter cpuCounter;
         PerformanceCounter memCounter;
         private static System.Windows.Threading.DispatcherTimer clock;
-        
+
         // Init
         public MainWindow()
-        { 
+        {
             InitializeComponent();
             // Start Performance Counters
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
@@ -50,7 +50,7 @@ namespace MonitorServer
             // Get CPU Temperature - Maybe Not
 
             // Get Network at Hand - Update only on Changes
-            if(System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
                 if (!_connected)
                 {
@@ -58,7 +58,8 @@ namespace MonitorServer
                     bar_net.Foreground = new SolidColorBrush(Colors.Green);
                     _connected = true;
                 }
-            } else
+            }
+            else
             {
                 if (_connected)
                 {
@@ -74,10 +75,11 @@ namespace MonitorServer
         private void btn_monitor_click(object sender, RoutedEventArgs e)
         {
             _started = !_started;
-            if(!_started)
+            if (!_started)
             {
                 btn_monitor.Content = "Start";
-            } else
+            }
+            else
             {
                 btn_monitor.Content = "End";
             }

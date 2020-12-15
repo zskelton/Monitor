@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Blend for Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorServer", "MonitorServer\MonitorServer.csproj", "{CCD08B6F-52DC-4B89-9032-7F92AA619FCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorServer", "MonitorServer\MonitorServer.csproj", "{20FBF106-E54F-469E-9106-3C14194E7254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CCD08B6F-52DC-4B89-9032-7F92AA619FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCD08B6F-52DC-4B89-9032-7F92AA619FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCD08B6F-52DC-4B89-9032-7F92AA619FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCD08B6F-52DC-4B89-9032-7F92AA619FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20FBF106-E54F-469E-9106-3C14194E7254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20FBF106-E54F-469E-9106-3C14194E7254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20FBF106-E54F-469E-9106-3C14194E7254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20FBF106-E54F-469E-9106-3C14194E7254}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {40CC5AB4-0224-432B-97AD-F8B8613B3072}
+		SolutionGuid = {74A74C55-1181-4AD6-A544-F97947F69790}
 	EndGlobalSection
 EndGlobal

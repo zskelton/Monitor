@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/zskelton/Monitor-Server</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyThemeInfo>false</GenerateAssemblyThemeInfo>
   </PropertyGroup>
 
 </Project>

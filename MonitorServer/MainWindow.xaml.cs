@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Diagnostics;
+using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace MonitorServer
 {
@@ -9,23 +11,29 @@ namespace MonitorServer
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Pull Methods
+        [DllImport("wininet.dll")]
+        private extern static bool InternetGetConnectedState(out int description, int reservedValue);
+
         // Class Variables
         private bool _started = false;
         PerformanceCounter cpuCounter;
-        PerformanceCounter ramCounter;
-        private static System.Windows.Threading.DispatcherTimer counter;
+        PerformanceCounter memCounter;
+        private static System.Windows.Threading.DispatcherTimer clock;
         
         // Init
         public MainWindow()
         { 
             InitializeComponent();
+            // Start Performance Counters
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+            memCounter = new PerformanceCounter("Memory", "% Committed Bytes In Use", null);
 
-            counter = new System.Windows.Threading.DispatcherTimer();
-            counter.Tick += new EventHandler(OnTickEvent);
-            counter.Interval = new TimeSpan(0, 0, 1);
-            counter.Start();
+            // Start Timer Thread
+            clock = new System.Windows.Threading.DispatcherTimer();
+            clock.Tick += new EventHandler(OnTickEvent);
+            clock.Interval = new TimeSpan(0, 0, 1);
+            clock.Start();
         }
 
         // Run on Tick
@@ -33,11 +41,27 @@ namespace MonitorServer
         {
             // Get Value of CPU
             float cpuVal = cpuCounter.NextValue();
-            lbl_cpu.Content = String.Format("{0:0.00}%", cpuVal);
+            lbl_cpuStatus.Content = String.Format("{0:0.00}%", cpuVal);
             bar_cpu.Value = cpuVal;
 
-            float ramVal = ramCounter.NextValue();
-            Console.WriteLine(ramVal.ToString());            
+            // Get Value of Ram
+            float memVal = memCounter.NextValue();
+            lbl_memStatus.Content = String.Format("{0:0.00}%", memVal);
+            bar_mem.Value = memVal;
+
+            // Get CPU Temperature
+
+            // Get Network at Hand
+            if(IsInternetAvailable())
+            {
+                lbl_netStatus.Content = "Connected";
+                bar_net.Value = 100;
+            } else
+            {
+                lbl_netStatus.Content = "Not Connected";
+                bar_net.Value = 0;
+            }
+            // Console.WriteLine(memVal.ToString());            
         }
 
         // Button Click
@@ -51,6 +75,13 @@ namespace MonitorServer
             {
                 btn_monitor.Content = "End";
             }
+        }
+
+        // Check Internet Connection
+        private static bool IsInternetAvailable()
+        {
+            int description;
+            return InternetGetConnectedState(out description, 0);
         }
     }
 }

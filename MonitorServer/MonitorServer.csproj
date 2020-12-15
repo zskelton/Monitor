@@ -10,6 +10,7 @@
     <PackageProjectUrl>https://github.com/zskelton/Monitor-Server</PackageProjectUrl>
     <RepositoryUrl>https://github.com/zskelton/Monitor-Server</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
 </Project>

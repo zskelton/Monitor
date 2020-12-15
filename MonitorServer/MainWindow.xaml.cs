@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Diagnostics;
-using System.Runtime;
-using System.Runtime.InteropServices;
+using System.Net;
+using System.Net.Sockets;
+using System.Windows.Media;
 
 namespace MonitorServer
 {
@@ -11,12 +12,9 @@ namespace MonitorServer
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Pull Methods
-        [DllImport("wininet.dll")]
-        private extern static bool InternetGetConnectedState(out int description, int reservedValue);
-
         // Class Variables
         private bool _started = false;
+        private bool _connected = false;
         PerformanceCounter cpuCounter;
         PerformanceCounter memCounter;
         private static System.Windows.Threading.DispatcherTimer clock;
@@ -51,15 +49,23 @@ namespace MonitorServer
 
             // Get CPU Temperature
 
-            // Get Network at Hand
-            if(IsInternetAvailable())
+            // Get Network at Hand - Update only on Changes
+            if(System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
-                lbl_netStatus.Content = "Connected";
-                bar_net.Value = 100;
+                if (!_connected)
+                {
+                    lbl_netStatus.Content = "IP: " + localIPAddress() + ".";
+                    bar_net.Foreground = new SolidColorBrush(Colors.Green);
+                    _connected = true;
+                }
             } else
             {
-                lbl_netStatus.Content = "Not Connected";
-                bar_net.Value = 0;
+                if (_connected)
+                {
+                    lbl_netStatus.Content = "Not Connected.";
+                    bar_net.Foreground = new SolidColorBrush(Colors.Red);
+                    _connected = false;
+                }
             }
             // Console.WriteLine(memVal.ToString());            
         }
@@ -77,11 +83,30 @@ namespace MonitorServer
             }
         }
 
-        // Check Internet Connection
-        private static bool IsInternetAvailable()
+        // Get IP Address
+        private static string localIPAddress()
         {
-            int description;
-            return InternetGetConnectedState(out description, 0);
+            IPHostEntry host;
+            string localIP = "";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+
+            foreach (IPAddress ip in host.AddressList)
+            {
+                localIP = ip.ToString();
+
+                string[] temp = localIP.Split('.');
+
+                if (ip.AddressFamily == AddressFamily.InterNetwork && temp[0] == "192")
+                {
+                    break;
+                }
+                else
+                {
+                    localIP = null;
+                }
+            }
+
+            return localIP;
         }
     }
 }

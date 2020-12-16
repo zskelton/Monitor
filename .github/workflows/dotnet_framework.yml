@@ -2,25 +2,24 @@ name: .NET Framework
 
 on:
   push:
-    branches: [ dev ]
+    branches: [dev]
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
-    name: Checkout Code
-    - uses: actions/checkout@v1
+      - name: Checkout Code
+        uses: actions/checkout@v1
 
-    - name: Setput MSBuild Path
-      uses: warrenbuckley/Setup-MSBuild@v1
+      - name: Setput MSBuild Path
+        uses: warrenbuckley/Setup-MSBuild@v1
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
 
-    - name: Restore NuGetPackages
-      uses: nuget restore MonitorServer.sln
+      - name: Restore NuGetPackages
+        uses: nuget restore MonitorServer.sln
 
-    - name: Build App
-      uses: msbuild MonitorServer.sln /p:Configuration=Release
+      - name: Build App
+        uses: msbuild MonitorServer.sln /p:Configuration=Release

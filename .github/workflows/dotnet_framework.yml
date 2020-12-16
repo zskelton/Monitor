@@ -14,12 +14,6 @@ jobs:
 
       - name: Setup MSBuild Path
         uses: microsoft/setup-msbuild@v1.0.2
-
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.2
-
-      - name: Restore NuGetPackages
-        run: nuget MonitorServer.sln restore
-
+        
       - name: Build App
         run: msbuild MonitorServer.sln /p:Configuration=Release

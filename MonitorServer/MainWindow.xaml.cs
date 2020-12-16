@@ -56,15 +56,12 @@ namespace MonitorServer
             foreach (IHardware hardware in cp.Hardware)
             {
                 hardware.Update();
-
-                Console.WriteLine("{0}: {1}", hardware.HardwareType, hardware.Name);
                 foreach (ISensor sensor in hardware.Sensors)
                 {
-                    // Celsius is default unit
-                    if (sensor.SensorType == SensorType.Temperature)
+                    if (sensor.Name == "CPU Total")
                     {
-                        Console.WriteLine("{0}: {1}°C", sensor.Name, sensor.Value);
-                        Console.WriteLine("{0}: {1}°F", sensor.Name, sensor.Value*1.8+32);
+                        lbl_loadStatus.Content = String.Format("Current: {0:0.0}", sensor.Value);
+                        bar_load.Value = (double)sensor.Value;
                     }
 
                 }

@@ -11,12 +11,12 @@
         <ProgressBar x:Name="bar_net" HorizontalAlignment="Left" Height="15" Margin="147,123.08,0,0" VerticalAlignment="Top" Width="135" Foreground="Red" Minimum="100"/>
         <Label x:Name="lbl_netStatus" Content="Connected to:" HorizontalAlignment="Left" Margin="147,138.08,0,0" VerticalAlignment="Top" Width="135"/>
         <Label x:Name="lbl_net" Content="Network" HorizontalAlignment="Left" Height="25" Margin="147,93.08,0,0" VerticalAlignment="Top" Width="135"/>
-        <ProgressBar x:Name="bar_temp" HorizontalAlignment="Left" Height="15" Margin="5,123.08,0,0" VerticalAlignment="Top" Width="135"/>
-        <Label x:Name="lbl_tmpStatus" Content="0 °F" HorizontalAlignment="Left" Margin="5,138.08,0,0" VerticalAlignment="Top" Width="135"/>
-        <Label x:Name="lbl_tmp" Content="Temperature" HorizontalAlignment="Left" Height="25" Margin="5,93.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <ProgressBar x:Name="bar_load" HorizontalAlignment="Left" Height="15" Margin="5,123.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_loadStatus" Content="Current: 0" HorizontalAlignment="Left" Margin="5,138.08,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_load" Content="CPU Load" HorizontalAlignment="Left" Height="25" Margin="5,93.08,0,0" VerticalAlignment="Top" Width="135"/>
         <ProgressBar x:Name="bar_cpu" HorizontalAlignment="Left" Height="15" Margin="5,40,0,0" VerticalAlignment="Top" Width="135"/>
         <Label x:Name="lbl_cpuStatus" Content="0%" HorizontalAlignment="Left" Margin="5,55,0,0" VerticalAlignment="Top" Width="135"/>
-        <Label x:Name="lbl_cpu" Content="CPU" HorizontalAlignment="Left" Height="25" Margin="5,10,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_cpu" Content="CPU Usage" HorizontalAlignment="Left" Height="25" Margin="5,10,0,0" VerticalAlignment="Top" Width="135"/>
         <ProgressBar x:Name="bar_mem" HorizontalAlignment="Left" Height="15" Margin="147,40,0,0" VerticalAlignment="Top" Width="135"/>
         <Label x:Name="lbl_memStatus" Content="0/0 MBs" HorizontalAlignment="Left" Margin="147,55,0,0" VerticalAlignment="Top" Width="135"/>
         <Label x:Name="lbl_mem" Content="Memory" HorizontalAlignment="Left" Height="25" Margin="147,10,0,0" VerticalAlignment="Top" Width="135"/>

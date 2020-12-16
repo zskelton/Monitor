@@ -19,7 +19,7 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.2
 
       - name: Restore NuGetPackages
-        uses: nuget restore MonitorServer.sln
+        uses: nuget restore
 
       - name: Build App
-        uses: msbuild MonitorServer.sln /p:Configuration=Release
+        uses: msbuild /p:Configuration=Release

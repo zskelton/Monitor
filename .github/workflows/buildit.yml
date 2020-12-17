@@ -22,8 +22,4 @@ jobs:
       - name: Build App
         run: msbuild MonitorServer.sln /p:Configuration=Release
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: ${{ matrix.language }}
         

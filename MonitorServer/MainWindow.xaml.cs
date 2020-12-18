@@ -28,6 +28,7 @@ namespace MonitorServer
         PerformanceCounter memCounter;
         NetworkInterface netCounter;
         private static System.Windows.Threading.DispatcherTimer clock;
+        private string portName;
 
         // Init
         public MainWindow()
@@ -90,7 +91,21 @@ namespace MonitorServer
                     bar_net.Foreground = new SolidColorBrush(Colors.Red);
                     _connected = false;
                 }
-            }           
+            }
+
+            // Update Port Name
+            if (!setUSB())
+            {
+                portName = null;
+                lbl_usbStatus.Content = "No USB Connection.";
+                bar_usb.Value = 0;
+                btn_monitor.IsEnabled = false;
+            } else
+            {
+                lbl_usbStatus.Content = String.Format("Connected on {0}", portName);
+                bar_usb.Value = 100;
+                btn_monitor.IsEnabled = true;
+            }
         }
 
         // Button Click
@@ -145,6 +160,28 @@ namespace MonitorServer
                 }
             }
             return _netCounter;
+        }
+
+        // List and Assign Serial Port
+        private bool setUSB()
+        {
+            string[] ports = SerialPort.GetPortNames();
+
+            if(ports.Length == 0)
+            {
+                return false;
+            }
+
+            if(portName != null)
+            {
+                return true;
+            }
+
+            foreach (string port in ports)
+            {
+                portName = port;
+            }
+            return true;
         }
     }
 }

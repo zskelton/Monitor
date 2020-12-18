@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Media;
-using OpenHardwareMonitor.Hardware;
 
 namespace MonitorServer
 {
@@ -19,7 +18,6 @@ namespace MonitorServer
         PerformanceCounter cpuCounter;
         PerformanceCounter memCounter;
         private static System.Windows.Threading.DispatcherTimer clock;
-        Computer cp;
 
         // Init
         public MainWindow()
@@ -28,9 +26,6 @@ namespace MonitorServer
             // Start Performance Counters
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             memCounter = new PerformanceCounter("Memory", "% Committed Bytes In Use", null);
-
-            cp = new Computer() { CPUEnabled = true };
-            cp.Open();
 
             // Start Timer Thread
             clock = new System.Windows.Threading.DispatcherTimer();
@@ -52,21 +47,8 @@ namespace MonitorServer
             lbl_memStatus.Content = String.Format("{0:0.00}%", memVal);
             bar_mem.Value = memVal;
 
-            // Get CPU Temperature - Maybe Not
-            foreach (IHardware hardware in cp.Hardware)
-            {
-                hardware.Update();
-                foreach (ISensor sensor in hardware.Sensors)
-                {
-                    if (sensor.Name == "CPU Total")
-                    {
-                        lbl_loadStatus.Content = String.Format("Current: {0:0.0}", sensor.Value);
-                        bar_load.Value = (double)sensor.Value;
-                    }
-
-                }
-                Console.WriteLine();
-            }
+            // Get Network Speed
+           
 
             // Get Network at Hand - Update only on Changes
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())

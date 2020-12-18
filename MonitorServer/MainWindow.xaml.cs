@@ -5,6 +5,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Windows.Media;
 
+// TODO: List USB Devices
+// TODO: Select the Arduino
+// TODO: Setup Serial Connection
+// TODO: Send Data to Serial Connection
+// TODO: Gracefully Kill Connection
+// TODO: Gracefully Exit the Program
+
 namespace MonitorServer
 {
     /// <summary>
@@ -89,8 +96,7 @@ namespace MonitorServer
                     bar_net.Foreground = new SolidColorBrush(Colors.Red);
                     _connected = false;
                 }
-            }
-            // Console.WriteLine(memVal.ToString());            
+            }           
         }
 
         // Button Click

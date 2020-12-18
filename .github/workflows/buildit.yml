@@ -1,3 +1,4 @@
+
 name: .NET Framework Build
 
 on:
@@ -20,3 +21,5 @@ jobs:
         
       - name: Build App
         run: msbuild MonitorServer.sln /p:Configuration=Release
+
+        

@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Windows.Media;
 using System.Net.NetworkInformation;
+using System.IO.Ports;
 
 // TODO: List USB Devices
 // TODO: Select the Arduino
@@ -61,8 +62,8 @@ namespace MonitorServer
             // Get Network Speed
             if(netCounter != null)
             {
-                lbl_netReceived.Content = String.Format("Received: {0} MBs", Math.Floor((double)(netCounter.GetIPv4Statistics().BytesReceived/1024)));
-                lbl_netSent.Content = String.Format("Sent: {0} MBs", Math.Floor((double)(netCounter.GetIPv4Statistics().BytesSent/1024)));
+                lbl_netReceived.Content = String.Format("Received: {0:0.0} MBs", netCounter.GetIPv4Statistics().BytesReceived/1024/1024);
+                lbl_netSent.Content = String.Format("Sent: {0:0.0} MBs", netCounter.GetIPv4Statistics().BytesSent/1024/1024);
                 lbl_netType.Content = netCounter.NetworkInterfaceType.ToString();
             } else
             {
@@ -76,7 +77,7 @@ namespace MonitorServer
             {
                     if (!_connected)
                 {
-                    lbl_netIP.Content = "IP: " + localIPAddress() + ".";
+                    lbl_netIP.Content = String.Format("IP: {0}", localIPAddress());
                     bar_net.Foreground = new SolidColorBrush(Colors.Green);
                     _connected = true;
                 }

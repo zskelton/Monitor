@@ -17,16 +17,29 @@ namespace MonitorServer
         private bool _connected = false;
         PerformanceCounter cpuCounter;
         PerformanceCounter memCounter;
+        PerformanceCounter netCounter;
         private static System.Windows.Threading.DispatcherTimer clock;
 
         // Init
         public MainWindow()
         {
             InitializeComponent();
-            // Start Performance Counters
+
+            // Get Network Interface
+            PerformanceCounterCategory category = new PerformanceCounterCategory("Network Interface");
+            String[] instancename = category.GetInstanceNames();
+            if (instancename == null || instancename.Length == 0)
+            {
+                netCounter = null;
+            } else
+            {
+                netCounter = new PerformanceCounter("Network Interface", "Bytes Total/sec", instancename[0]);
+            }
+
+            // Start  Other Performance Counters
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             memCounter = new PerformanceCounter("Memory", "% Committed Bytes In Use", null);
-
+            
             // Start Timer Thread
             clock = new System.Windows.Threading.DispatcherTimer();
             clock.Tick += new EventHandler(OnTickEvent);
@@ -48,7 +61,15 @@ namespace MonitorServer
             bar_mem.Value = memVal;
 
             // Get Network Speed
-           
+            float netVal = 0.0f;
+            if(netCounter != null)
+            {
+                netVal = netCounter.NextValue();
+                lbl_netuseStatus.Content = String.Format("{0:0.0000} MB/s", netVal / 1024);
+            } else
+            {
+                lbl_netuseStatus.Content = "No interface.";
+            }
 
             // Get Network at Hand - Update only on Changes
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())

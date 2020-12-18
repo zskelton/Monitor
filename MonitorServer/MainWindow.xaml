@@ -8,9 +8,9 @@
         Title="Monitor - Server" Height="260" Width="300">
     <Grid>
         <Button x:Name="btn_monitor" Content="Start" HorizontalAlignment="Left" Margin="200,189.04,0,0" VerticalAlignment="Top" Width="75" Click="btn_monitor_click" IsEnabled="False"/>
-        <ProgressBar x:Name="bar_net" HorizontalAlignment="Left" Height="15" Margin="10,151.09,0,0" VerticalAlignment="Top" Width="265" Foreground="Red" Minimum="100"/>
-        <Label x:Name="lbl_netStatus" Content="No connection." HorizontalAlignment="Left" Margin="5,120.13,0,0" VerticalAlignment="Top" Width="135"/>
-        <Label x:Name="lbl_netuseStatus" Content="0/0 MBs" HorizontalAlignment="Left" Margin="147,120.13,0,0" VerticalAlignment="Top" Width="135"/>
+        <ProgressBar x:Name="bar_net" HorizontalAlignment="Left" Height="15" Margin="147,100.13,0,0" VerticalAlignment="Top" Width="128" Foreground="Red" Minimum="100"/>
+        <Label x:Name="lbl_netType" Content="No connection." HorizontalAlignment="Left" Margin="5,120.13,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_netSent" Content="0/0 MBs" HorizontalAlignment="Left" Margin="147,146.09,0,0" VerticalAlignment="Top" Width="135"/>
         <Label x:Name="lbl_net" Content="Network Information:" HorizontalAlignment="Left" Height="25" Margin="5,93.08,0,0" VerticalAlignment="Top" Width="277" FontWeight="Bold"/>
         <ProgressBar x:Name="bar_cpu" HorizontalAlignment="Left" Height="15" Margin="5,40,0,0" VerticalAlignment="Top" Width="125"/>
         <Label x:Name="lbl_cpuStatus" Content="0%" HorizontalAlignment="Left" Margin="5,55,0,0" VerticalAlignment="Top" Width="135"/>
@@ -18,8 +18,10 @@
         <ProgressBar x:Name="bar_mem" HorizontalAlignment="Left" Height="15" Margin="147,40,0,0" VerticalAlignment="Top" Width="128"/>
         <Label x:Name="lbl_memStatus" Content="0%" HorizontalAlignment="Left" Margin="147,55,0,0" VerticalAlignment="Top" Width="135"/>
         <Label x:Name="lbl_mem" Content="Memory:" HorizontalAlignment="Left" Height="25" Margin="147,10,0,0" VerticalAlignment="Top" Width="135" FontWeight="Bold"/>
-        <ProgressBar HorizontalAlignment="Left" Height="19.96" Margin="5,189.04,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.048"/>
-        <Label x:Name="lbl_tmp_Copy" Content="No USB Connection." HorizontalAlignment="Left" Height="19.96" Margin="30,189.04,0,0" VerticalAlignment="Top" Width="172" FontSize="8"/>
+        <ProgressBar x:Name="bar_usb" HorizontalAlignment="Left" Height="19.96" Margin="5,189.04,0,0" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.048"/>
+        <Label x:Name="lbl_usbStatus" Content="No USB Connection." HorizontalAlignment="Left" Height="19.96" Margin="30,189.04,0,0" VerticalAlignment="Top" Width="172" FontSize="8"/>
+        <Label x:Name="lbl_netReceived" Content="0/0 MBs" HorizontalAlignment="Left" Margin="147,120.13,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="lbl_netIP" Content="No connection." HorizontalAlignment="Left" Margin="5,146.09,0,0" VerticalAlignment="Top" Width="135"/>
 
     </Grid>
 </Window>

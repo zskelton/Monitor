@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Media;
+using System.Net.NetworkInformation;
 
 // TODO: List USB Devices
 // TODO: Select the Arduino
@@ -24,7 +25,7 @@ namespace MonitorServer
         private bool _connected = false;
         PerformanceCounter cpuCounter;
         PerformanceCounter memCounter;
-        PerformanceCounter netCounter;
+        NetworkInterface netCounter;
         private static System.Windows.Threading.DispatcherTimer clock;
 
         // Init
@@ -32,18 +33,8 @@ namespace MonitorServer
         {
             InitializeComponent();
 
-            // Get Network Interface
-            PerformanceCounterCategory category = new PerformanceCounterCategory("Network Interface");
-            String[] instancename = category.GetInstanceNames();
-            if (instancename == null || instancename.Length == 0)
-            {
-                netCounter = null;
-            } else
-            {
-                netCounter = new PerformanceCounter("Network Interface", "Bytes Total/sec", instancename[0]);
-            }
-
             // Start  Other Performance Counters
+            netCounter = getNetInterface();
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             memCounter = new PerformanceCounter("Memory", "% Committed Bytes In Use", null);
             
@@ -68,22 +59,24 @@ namespace MonitorServer
             bar_mem.Value = memVal;
 
             // Get Network Speed
-            float netVal = 0.0f;
             if(netCounter != null)
             {
-                netVal = netCounter.NextValue();
-                lbl_netuseStatus.Content = String.Format("{0:0.0000} MB/s", netVal / 1024);
+                lbl_netReceived.Content = String.Format("Received: {0} MBs", Math.Floor((double)(netCounter.GetIPv4Statistics().BytesReceived/1024)));
+                lbl_netSent.Content = String.Format("Sent: {0} MBs", Math.Floor((double)(netCounter.GetIPv4Statistics().BytesSent/1024)));
+                lbl_netType.Content = netCounter.NetworkInterfaceType.ToString();
             } else
             {
-                lbl_netuseStatus.Content = "No interface.";
+                lbl_netReceived.Content = "0 Bytes";
+                lbl_netSent.Content = "0 Bytes";
+                lbl_netType.Content = "No Interface.";
             }
 
             // Get Network at Hand - Update only on Changes
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            if (NetworkInterface.GetIsNetworkAvailable())
             {
-                if (!_connected)
+                    if (!_connected)
                 {
-                    lbl_netStatus.Content = "IP: " + localIPAddress() + ".";
+                    lbl_netIP.Content = "IP: " + localIPAddress() + ".";
                     bar_net.Foreground = new SolidColorBrush(Colors.Green);
                     _connected = true;
                 }
@@ -92,7 +85,7 @@ namespace MonitorServer
             {
                 if (_connected)
                 {
-                    lbl_netStatus.Content = "Not Connected.";
+                    lbl_netIP.Content = "Not Connected.";
                     bar_net.Foreground = new SolidColorBrush(Colors.Red);
                     _connected = false;
                 }
@@ -137,6 +130,20 @@ namespace MonitorServer
             }
 
             return localIP;
+        }
+
+        // Get Network Interface
+        private NetworkInterface getNetInterface()
+        {
+            NetworkInterface _netCounter = null;
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 || ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                {
+                    _netCounter = ni;
+                }
+            }
+            return _netCounter;
         }
     }
 }

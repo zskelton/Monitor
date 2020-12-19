@@ -7,8 +7,6 @@ using System.Windows.Media;
 using System.Net.NetworkInformation;
 using System.IO.Ports;
 
-// TODO: List USB Devices
-// TODO: Select the Arduino
 // TODO: Setup Serial Connection
 // TODO: Send Data to Serial Connection
 // TODO: Gracefully Kill Connection

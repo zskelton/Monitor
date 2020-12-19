@@ -1,0 +1,35 @@
+name: Arudino
+
+on:
+  push:
+    branches: [ dev ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test-app:
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        arduino-platform: [ "arduino:avr"]
+        include:
+          - arduino-platform: "arduino:avr"
+            fqbn: "arduino:avr:uno"
+ 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+ 
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1.0.0
+ 
+      - name: Install platform
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install ${{ matrix.arduino-platform }}
+ 
+      - name: Compile Sketch
+        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} ./MonitorClient/main
+

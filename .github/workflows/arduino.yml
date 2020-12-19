@@ -10,13 +10,6 @@ on:
 jobs:
   test-app:
     runs-on: windows-latest
-
-    strategy:
-      matrix:
-        arduino-platform: [ "arduino:avr"]
-        include:
-          - arduino-platform: "arduino:avr"
-            fqbn: "arduino:avr:uno"
  
     steps:
       - name: Checkout
@@ -28,8 +21,8 @@ jobs:
       - name: Install platform
         run: |
           arduino-cli core update-index
-          arduino-cli core install ${{ matrix.arduino-platform }}
+          arduino-cli core install "arduino:avr"
  
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} ./MonitorClient/main
+        run: arduino-cli compile --fqbn "arduino:avr:uno" ./MonitorClient/main
 

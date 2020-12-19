@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
- 
-      - name: Setup Arduino CLI
+        
+      - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v1.0.0
  
       - name: Install platform

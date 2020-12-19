@@ -1,0 +1,25 @@
+
+name: .NET Framework Build
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1
+
+      - name: Setup MSBuild Path
+        uses: microsoft/setup-msbuild@v1.0.2
+      
+      - name: Nuget Restore 
+        run: nuget restore MonitorServer.sln
+        
+      - name: Build App
+        run: msbuild MonitorServer.sln /p:Configuration=Release
+
+        

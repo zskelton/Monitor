@@ -22,7 +22,8 @@ jobs:
         run: |
           arduino-cli core update-index
           arduino-cli core install "arduino:avr"
+          arduino-cli lib install "Adafruit TFTLCD Library"
  
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn arduino:avr:uno ./MonitorClient/main
+        run: arduino-cli compile --fqbn arduino:avr:uno ./MonitorClient
 

@@ -1,4 +1,8 @@
-# Monitor-Server
-Server to send computer info to monitor screen.
+# Monitor Program
+Communication between computer and Arduino Uno with TFT Screen to show computer statistics.
 
-More to follow....
+## Monitor-Server
+Server to send computer info to monitor screen as a WPF Windows Application.
+
+## Monitor-Client
+Client to receive data on Arduino Uno and display to ELEGOO TFT Screen.

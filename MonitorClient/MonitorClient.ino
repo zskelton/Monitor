@@ -18,64 +18,28 @@
 #define YELLOW  0xFFE0
 #define WHITE   0xFFFF
 
-// Bar Class
-#ifndef BAR_H
-#define BAR_H
-
-#include <Adafruit_GFX.h>    // Core graphics library
-#include <Adafruit_TFTLCD.h> // Hardware-specific library
-
-class Bar
-{
-  public:
-    Bar(Adafruit_TFTLCD screen, int x, int y, int w, int h);
-    void draw();
-    void setValue(int inp);
-    int getValue();
-  private:
-    float _value;
-    bool _visible;
-    int _x;
-    int _y;
-    int _w;
-    int _h;
-    Adafruit_TFTLCD _screen;
-};
-
-Bar::Bar(Adafruit_TFTLCD screen, int x, int y, int w, int h)
-{
-  _screen = screen;
-  _x = x;
-  _y = y;
-  _w = w;
-  _h = h;
-  _value = 0.0;
-  _visible = true;
-}
-
-void Bar::draw()
-{
-  _screen.fillRect(_x, _y, _h, _w, RED); // Background
-  _screen.fillRect(_x, _y, _h, int(_w/_value), GREEN); // Draw Percentage on top.
-}
-
-void Bar::setValue(int inp)
-{
-  _value = inp;
-}
-
-int Bar::getValue()
-{
-  return _value;
-}
-
-#endif
-
 // Define Global Variables
 Adafruit_TFTLCD screen(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
+struct label {
+  int x;
+  int y;
+  String text;
+};
+struct bar {
+  int x;
+  int y;
+  int h;
+  int w;
+  int value;
+};
 
-Bar testBar(screen, 50, 50, 10, 200);
-int value=50;
+label title;
+bar cpu;
+
+// Functions
+void drawScreenObjects();
+void drawText(label obj, uint16_t color=WHITE, uint8_t size=2);
+void drawBar(bar obj, uint16_t outline=WHITE, uint16_t color=GREEN);
 
 void setup(void) {
   // Setup Serial
@@ -91,9 +55,13 @@ void setup(void) {
   screen.fillScreen(BLACK);
   Serial.println("Screen Up.");
 
-  // Initial Value
-  testBar.setValue(50);
-  screen.fillRect(100, 100, 10, 200, RED);
+  // Initial Values
+  screen.setRotation(3);
+  title = {x: 0, y: 0, text: "test"};
+  cpu = {x: 0, y: 20, h: 10, w: 100, value: 50};
+
+  // Draw Stable Objects
+  drawText(title);
 }
 
 void loop()
@@ -103,11 +71,34 @@ void loop()
   if(Serial.available() > 0)
   {
     receiveVal = Serial.read();
-    Serial.print("Received: %c");
+    Serial.print("Received: ");
     Serial.println(receiveVal);
   }
 
-  // Redraw Bar
-  //testBar.draw();
-  screen.fillRect(100, 100, 10, 100, GREEN);
+  // Draw Screen
+  drawScreenObjects();
+
+  // Pause Loop
+  delay(500); // Pause for the remainder of a second.
+}
+
+void drawScreenObjects()
+{
+  drawBar(cpu);
+}
+
+void drawText(label obj, uint16_t color=WHITE, uint8_t size=2)
+{
+  screen.setRotation(3);
+  screen.setCursor(obj.x, obj.y);
+  screen.setTextColor(color);
+  screen.setTextSize(size);
+  screen.println(obj.text);
+}
+
+void drawBar(bar obj, uint16_t outline=WHITE, uint16_t color=GREEN)
+{
+  screen.setRotation(3);
+  screen.drawRect(obj.x, obj.y, obj.w, obj.h, outline);
+  screen.fillRect(obj.x, obj.y, int(obj.value*(obj.w/100)), obj.h, color);
 }

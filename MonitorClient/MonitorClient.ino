@@ -34,7 +34,18 @@ struct bar {
 };
 
 label title;
-bar cpu;
+label lblCpu;
+bar barCpu;
+label lblMem;
+bar barMem;
+label lblNet;
+label lblNetConnection;
+label lblNetIP;
+label lblNetBytesReceved;
+label lblNetBytesSent;
+
+
+bar barNet;
 
 // Functions
 void drawScreenObjects();
@@ -57,11 +68,26 @@ void setup(void) {
 
   // Initial Values
   screen.setRotation(3);
-  title = {x: 0, y: 0, text: "test"};
-  cpu = {x: 0, y: 20, h: 10, w: 100, value: 50};
+  // Labels - Static
+  title = {x: 0, y: 0, text: "Enoch's Computer Monitor"};
+  lblCpu = {x: 0, y: 20, text: "CPU:"};
+  lblMem = {x: 0, y: 60, text: "Memory:"};
+  lblNet = {x: 0, y: 100, text: "Network:"};
+  // Labels - Variable
+  lblNetConnection = {x: 0, y: 140, text: "Not Connected."};
+  lblNetIP = {x: 0, y: 160, text: ""};
+  lblNetBytesReceved = {x: 0, y: 180, text: "Received: 0 MBs"};
+  lblNetBytesSent = {x: 0, y: 200, text: "Sent: 0 MBs"};
+  // Bars - Variable
+  barCpu = {x: 0, y: 40, h: 10, w: 100, value: 50};
+  barMem = {x: 0, y: 80, h: 10, w: 100, value: 50};
+  barNet = {x: 0, y: 120, h: 10, w: 100, value: 50};
 
-  // Draw Stable Objects
+  // Draw Static Objects
   drawText(title);
+  drawText(lblCpu);
+  drawText(lblMem);
+  drawText(lblNet);
 }
 
 void loop()
@@ -84,7 +110,13 @@ void loop()
 
 void drawScreenObjects()
 {
-  drawBar(cpu);
+  drawBar(barCpu);
+  drawBar(barMem);
+  drawBar(barNet);
+  drawText(lblNetConnection);
+  drawText(lblNetIP);
+  drawText(lblNetBytesReceved);
+  drawText(lblNetBytesSent);
 }
 
 void drawText(label obj, uint16_t color=WHITE, uint8_t size=2)

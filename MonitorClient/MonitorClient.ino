@@ -80,8 +80,8 @@ void setup(void) {
   // Labels - Variable
   lblNetConnection = {x: 0, y: 140, text: "Not Connected."};
   lblNetIP = {x: 0, y: 160, text: ""};
-  lblNetBytesReceived = {x: 0, y: 180, text: "Received:           0 MBs", changed: false};
-  lblNetBytesSent = {x: 0, y: 200, text:     "Sent:               0 MBs", changed: false};
+  lblNetBytesReceived = {x: 0, y: 180, text: "Received", changed: false};
+  lblNetBytesSent = {x: 0, y: 200, text:     "Sent", changed: false};
   // Bars - Variable
   barCpu = {x: 0, y: 40, h: 10, w: 100, value: 0, changed: false};
   barMem = {x: 0, y: 80, h: 10, w: 100, value: 0, changed: false};
@@ -109,9 +109,6 @@ void loop()
     // Draw Objects
     drawScreenObjects();
   }
-
-  // Pause Loop
-  delay(500); // Pause for the remainder of a second.
 }
 
 bool getData()

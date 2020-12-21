@@ -7,10 +7,7 @@ using System.Windows.Media;
 using System.Net.NetworkInformation;
 using System.IO.Ports;
 
-// TODO: Setup Serial Connection
-// TODO: Send Data to Serial Connection
-// TODO: Gracefully Kill Connection
-// TODO: Gracefully Exit the Program
+// TODO: Better handle USB Disconnect/Connects
 
 namespace MonitorServer
 {
@@ -98,6 +95,12 @@ namespace MonitorServer
             // Update Port Name
             if (!setUSB())
             {
+                if(portOpen)
+                {
+                    portOpen = false;
+                    serialPort.Close();
+                    serialPort = null;
+                }
                 portName = null;
                 lbl_usbStatus.Content = "No USB Connection.";
                 bar_usb.Value = 0;
@@ -136,9 +139,15 @@ namespace MonitorServer
                 String ip = lbl_netIP.Content.ToString();
                 String rec = lbl_netReceived.Content.ToString();
                 String sent = lbl_netSent.Content.ToString();
-
                 String line = String.Format("{0}:{1}:{2}:{3}:{4}:{5}:{6}\n", (int)cpuVal, (int)memVal, con, type, ip, rec, sent);
-                serialPort.Write(line);
+                try
+                {
+                    serialPort.Write(line);
+                }
+                catch
+                {
+                    Console.WriteLine("Disconnected USB.");
+                }
             }
         }
 

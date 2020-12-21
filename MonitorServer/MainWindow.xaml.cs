@@ -20,18 +20,22 @@ namespace MonitorServer
     public partial class MainWindow : Window
     {
         // Class Variables
-        private bool _started = false;
         private bool _connected = false;
-        PerformanceCounter cpuCounter;
-        PerformanceCounter memCounter;
-        NetworkInterface netCounter;
+        private PerformanceCounter cpuCounter;
+        private PerformanceCounter memCounter;
+        private NetworkInterface netCounter;
         private static System.Windows.Threading.DispatcherTimer clock;
         private string portName;
+        private SerialPort serialPort;
+        private bool portOpen;
 
         // Init
         public MainWindow()
         {
             InitializeComponent();
+
+            // Set Class Variables
+            portOpen = false;
 
             // Start  Other Performance Counters
             netCounter = getNetInterface();
@@ -42,7 +46,7 @@ namespace MonitorServer
             clock = new System.Windows.Threading.DispatcherTimer();
             clock.Tick += new EventHandler(OnTickEvent);
             clock.Interval = new TimeSpan(0, 0, 1);
-            clock.Start();
+            clock.Start();            
         }
 
         // Run on Tick
@@ -61,8 +65,8 @@ namespace MonitorServer
             // Get Network Speed
             if(netCounter != null)
             {
-                lbl_netReceived.Content = String.Format("Received: {0:0.0} MBs", netCounter.GetIPv4Statistics().BytesReceived/1024/1024);
-                lbl_netSent.Content = String.Format("Sent: {0:0.0} MBs", netCounter.GetIPv4Statistics().BytesSent/1024/1024);
+                lbl_netReceived.Content = String.Format("Received - {0:0.0} MBs", netCounter.GetIPv4Statistics().BytesReceived/1024/1024);
+                lbl_netSent.Content = String.Format("Sent - {0:0.0} MBs", netCounter.GetIPv4Statistics().BytesSent/1024/1024);
                 lbl_netType.Content = netCounter.NetworkInterfaceType.ToString();
             } else
             {
@@ -74,9 +78,9 @@ namespace MonitorServer
             // Get Network at Hand - Update only on Changes
             if (NetworkInterface.GetIsNetworkAvailable())
             {
-                    if (!_connected)
+                if (!_connected)
                 {
-                    lbl_netIP.Content = String.Format("IP: {0}", localIPAddress());
+                    lbl_netIP.Content = String.Format("IP - {0}", localIPAddress());
                     bar_net.Foreground = new SolidColorBrush(Colors.Green);
                     _connected = true;
                 }
@@ -97,26 +101,44 @@ namespace MonitorServer
                 portName = null;
                 lbl_usbStatus.Content = "No USB Connection.";
                 bar_usb.Value = 0;
-                btn_monitor.IsEnabled = false;
             } else
             {
+                if(!portOpen && portName != null)
+                {
+                    serialPort = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+                    serialPort.Open();
+                    portOpen = true;
+                }
                 lbl_usbStatus.Content = String.Format("Connected on {0}", portName);
                 bar_usb.Value = 100;
-                btn_monitor.IsEnabled = true;
             }
-        }
 
-        // Button Click
-        private void btn_monitor_click(object sender, RoutedEventArgs e)
-        {
-            _started = !_started;
-            if (!_started)
+            // Send Stats if Port is Open
+            if(portOpen)
             {
-                btn_monitor.Content = "Start";
-            }
-            else
-            {
-                btn_monitor.Content = "End";
+                // Format:
+                // 0 - [barCpu]                  : 0-100
+                // 1 - [barMem]                  : 0-100
+                // 2 - [barNet]                  : 0|100
+                // 3 - [lblNetConnect]           : "" | Type
+                // 4 - [lblNetIP]                : "" | IP
+                // 5 - [lblNetBytesReceivedData] : Number
+                // 6 - [lblNetBytesSentData]       Number
+                // End \n
+                // Example
+                // 50:50:100:Ethernet:192.168.1.10:Received          10 MBs:Sent             100 MBs
+                int con = 0;
+                if(_connected)
+                {
+                    con = 100;
+                }
+                String type = lbl_netType.Content.ToString();
+                String ip = lbl_netIP.Content.ToString();
+                String rec = lbl_netReceived.Content.ToString();
+                String sent = lbl_netSent.Content.ToString();
+
+                String line = String.Format("{0}:{1}:{2}:{3}:{4}:{5}:{6}\n", (int)cpuVal, (int)memVal, con, type, ip, rec, sent);
+                serialPort.Write(line);
             }
         }
 
@@ -180,6 +202,15 @@ namespace MonitorServer
                 portName = port;
             }
             return true;
+        }
+
+        private void OnWindowClose(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // Clean Connection
+            if(portOpen)
+            {
+                serialPort.Close();
+            }
         }
     }
 }

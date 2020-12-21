@@ -1,29 +1,23 @@
 name: Arudino
 
-on:
-  push:
-    branches: [ dev ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: push
 
 jobs:
   test-app:
     runs-on: windows-latest
- 
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@master
- 
+
       - name: Install platform
         run: |
           arduino-cli core update-index
           arduino-cli core install "arduino:avr"
           arduino-cli lib install "Adafruit TFTLCD Library"
- 
+
       - name: Compile Sketch
         run: arduino-cli compile --fqbn arduino:avr:uno ./MonitorClient
-

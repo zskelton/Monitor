@@ -1,5 +1,5 @@
 # Monitor Program
-![server](./docs/monitor.png?raw=true) ![client](./docs/screen_data.jpg?raw=true)
+![client](./docs/screen_data.jpg) ![server](./docs/monitor.png)
 
 ## Purpose:
 Creates a visual interface to output statistics about the computer to a screen driven by an Arduino Uno. Version 1.0 gathers CPU, Memory, and Network statistics. These transfer through USB Serial from the Windows Application to the Arduino as a display. Two programs drive this communication.
@@ -18,6 +18,7 @@ Displays a static screen until it receives data. Updates every second.
 1. Windows 10 Computer
 2. [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3) - $23
 3. [Elegoo TFTLCD Screen](https://www.elegoo.com/products/elegoo-2-8-inches-tft-touch-screen) - $19
+
 -- Build cost: $42
 
 ### Hardware Build -
@@ -25,7 +26,7 @@ The display is built to fit an Arduino uno. Pins are configured in code to these
 
 - Arduino Uno:
 
-![uno](./docs/uno.jpg?raw=true)
+![uno](./docs/uno.jpg)
 
 - Elegoo TFTLCD Screen:
 
@@ -38,6 +39,7 @@ Use the Monitor Version 1.0 [Installer](https://github.com/zskelton/Monitor/rele
 - Compile and Upload MonitorClient.ino with [Arduino IDE](https://www.arduino.cc/en/software).
 - Plug in USB with Monitor Server Running to see statistics.
 
+---
 #### Dependencies
 - [Adafruit GFX Library](https://learn.adafruit.com/adafruit-gfx-graphics-library)
 - [Adafruit TFTLCD Library](https://github.com/adafruit/TFTLCD-Library)

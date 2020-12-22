@@ -14,7 +14,7 @@ namespace MonitorServer
     /// <summary>
     /// Main Window for Performance Counter.
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IDisposable
     {
         // Class Variables
         private bool _connected = false;
@@ -215,11 +215,18 @@ namespace MonitorServer
 
         private void OnWindowClose(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Clean Connection
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            // Kill Connections
             if(portOpen)
             {
                 serialPort.Close();
             }
+            cpuCounter.Close();
+            memCounter.Close();
         }
     }
 }

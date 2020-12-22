@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1300
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorServer", "MonitorServer\MonitorServer.csproj", "{C55DE4AB-E749-439C-A54C-61D992AAA61C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonitorClient", "..\..\..\Documents\Arduino\MonitorClient\MonitorClient.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{B8C21BB8-720F-483E-8D5E-768827933D19}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonitorClient", "MonitorClient\MonitorClient.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,16 +25,16 @@ Global
 		{C55DE4AB-E749-439C-A54C-61D992AAA61C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C55DE4AB-E749-439C-A54C-61D992AAA61C}.Release|x86.ActiveCfg = Release|Any CPU
 		{C55DE4AB-E749-439C-A54C-61D992AAA61C}.Release|x86.Build.0 = Release|Any CPU
+		{B8C21BB8-720F-483E-8D5E-768827933D19}.Debug|Any CPU.ActiveCfg = Debug
+		{B8C21BB8-720F-483E-8D5E-768827933D19}.Debug|x86.ActiveCfg = Debug
+		{B8C21BB8-720F-483E-8D5E-768827933D19}.Release|Any CPU.ActiveCfg = Release
+		{B8C21BB8-720F-483E-8D5E-768827933D19}.Release|x86.ActiveCfg = Release
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|Any CPU.ActiveCfg = Release|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
-		{B8C21BB8-720F-483E-8D5E-768827933D19}.Debug|Any CPU.ActiveCfg = Debug
-		{B8C21BB8-720F-483E-8D5E-768827933D19}.Debug|x86.ActiveCfg = Debug
-		{B8C21BB8-720F-483E-8D5E-768827933D19}.Release|Any CPU.ActiveCfg = Release
-		{B8C21BB8-720F-483E-8D5E-768827933D19}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

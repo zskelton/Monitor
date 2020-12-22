@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorServer", "MonitorSer
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonitorClient", "..\..\..\Documents\Arduino\MonitorClient\MonitorClient.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{B8C21BB8-720F-483E-8D5E-768827933D19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|Any CPU.ActiveCfg = Release|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+		{B8C21BB8-720F-483E-8D5E-768827933D19}.Debug|Any CPU.ActiveCfg = Debug
+		{B8C21BB8-720F-483E-8D5E-768827933D19}.Debug|x86.ActiveCfg = Debug
+		{B8C21BB8-720F-483E-8D5E-768827933D19}.Release|Any CPU.ActiveCfg = Release
+		{B8C21BB8-720F-483E-8D5E-768827933D19}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

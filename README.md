@@ -1,6 +1,15 @@
 # Monitor Program
 ![client](./docs/screen_data.jpg) ![server](./docs/monitor.png)
 
+---
+##### v1.0 Status:
+![Arudino](https://github.com/zskelton/Monitor/workflows/Arudino/badge.svg)
+
+![.NET Framework Build](https://github.com/zskelton/Monitor/workflows/.NET%20Framework%20Build/badge.svg)
+
+![CodeQL](https://github.com/zskelton/Monitor/workflows/CodeQL/badge.svg)
+
+
 ## Purpose:
 Creates a visual interface to output statistics about the computer to a screen driven by an Arduino Uno. Version 1.0 gathers CPU, Memory, and Network statistics. These transfer through USB Serial from the Windows Application to the Arduino as a display. Two programs drive this communication.
 

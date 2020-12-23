@@ -3,10 +3,8 @@
 
 ---
 ##### v1.0 Status:
-![Arudino](https://github.com/zskelton/Monitor/workflows/Arudino/badge.svg)
-
-![.NET Framework Build](https://github.com/zskelton/Monitor/workflows/.NET%20Framework%20Build/badge.svg)
-
+![Arudino](https://github.com/zskelton/Monitor/workflows/Arudino/badge.svg) <br />
+![.NET Framework Build](https://github.com/zskelton/Monitor/workflows/.NET%20Framework%20Build/badge.svg) <br />
 ![CodeQL](https://github.com/zskelton/Monitor/workflows/CodeQL/badge.svg)
 
 

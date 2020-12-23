@@ -7,8 +7,6 @@ using System.Windows.Media;
 using System.Net.NetworkInformation;
 using System.IO.Ports;
 
-// TODO: Better handle USB Disconnect/Connects
-
 namespace MonitorServer
 {
     /// <summary>

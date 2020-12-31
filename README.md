@@ -47,6 +47,13 @@ Use the Monitor Version 1.0 [Installer](https://github.com/zskelton/Monitor/rele
 - Plug in USB with Monitor Server Running to see statistics.
 
 ---
+### TODOs
+- [x] Create Working Version.
+- [ ] Get rid of UI, make as a service.
+- [ ] Remove Windows Dependence
+- [ ] Make stylized UI for Arduino Client
+- [ ] Create application to customize layout. 
+
 #### Dependencies
 - [Adafruit GFX Library](https://learn.adafruit.com/adafruit-gfx-graphics-library)
 - [Adafruit TFTLCD Library](https://github.com/adafruit/TFTLCD-Library)
